@@ -14,9 +14,9 @@
         <div class="watch">
             <div class="outer-circle">
                 <div class="inner-circle">
-                    <span class="text minute">01 :</span>
-                    <span class="text sec">&nbsp;47 :</span>
-                    <span class="text msec">&nbsp;97</span>
+                    <span class="text minute"></span>
+                    <span class="text sec"></span>
+                    <span class="text msec"></span>
                 </div>
             </div>
             <div class="button-wrapper">
@@ -66,17 +66,42 @@
         const playButton = document.getElementsByClassName("play")[0];
         const lapButton = document.getElementsByClassName("lap")[0];
         const resetButton = document.getElementsByClassName("reset")[0];
+        const second = document.getElementsByClassName("sec")[0];
+
+        let isplay = false;
+        let sec=0;
 
         const toggleButton = () => {
-            lapButton.classList.remove("hidden")
-            resetButton.classList.remove("hidden")
+            lapButton.classList.remove("hidden");
+            resetButton.classList.remove("hidden");
         }
 
         const play = () => {
+            if(!isplay){
+                playButton.innerHTML = 'Pause';
+                isplay = true;
+            }
+            else{
+                playButton.innerHTML = 'Play';
+                isplay = false;
+            }
             toggleButton();
         }
 
-        playButton,addEventListener("click", play);
+        // Play StopWatch count Seconds
+        const playSec = () => {
+            setInterval(() => {
+                second.innerHTML = sec++;
+            }, 1000);
+        }
+        const reset = () => {
+            play();
+            lapButton.classList.add("hidden");
+            resetButton.classList.add("hidden");
+        }
+
+        playButton.addEventListener("click", play);
+        resetButton.addEventListener("click", reset);
     </script>
 </body>
 </html>

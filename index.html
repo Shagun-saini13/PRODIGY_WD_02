@@ -14,9 +14,9 @@
         <div class="watch">
             <div class="outer-circle">
                 <div class="inner-circle">
-                    <span class="text minute"></span>
-                    <span class="text sec"></span>
-                    <span class="text msec"></span>
+                    <span class="text minute">0 :</span>
+                    <span class="text sec">&nbsp;0 :</span>
+                    <span class="text msec">&nbsp;0</span>
                 </div>
             </div>
             <div class="button-wrapper">
@@ -67,9 +67,18 @@
         const lapButton = document.getElementsByClassName("lap")[0];
         const resetButton = document.getElementsByClassName("reset")[0];
         const second = document.getElementsByClassName("sec")[0];
+        const minute = document.getElementsByClassName("minute")[0];
+        const centiSecond = document.getElementsByClassName("msec20")[0];
+        const laps = document.getElementsByClassName("laps")[0];
 
         let isplay = false;
-        let sec=0;
+        let secCounter=0;
+        let min;
+        let sec;
+        let centiSec;
+        let centiCounter = 0;
+        let minCounter = 0;
+        let isReset = false;
 
         const toggleButton = () => {
             lapButton.classList.remove("hidden");
@@ -77,27 +86,60 @@
         }
 
         const play = () => {
-            if(!isplay){
+            if(!isplay && !isReset){
                 playButton.innerHTML = 'Pause';
+                // Counter of minute
+                min = setInterval(() => {
+                    minute.innerHTML = `${++minCounter} :`;
+                }, 60*1000);
+                // Counter of Seconds
+                sec = setInterval(() => {
+                    if(secCounter === 60){
+                        secCounter = 0;
+                    }
+                    second.innerHTML = `&nbsp;${++secCounter} :`;
+                }, 1000);
+                // Counter of msec
+                centiSec = setInterval(() => {
+                    if(centiCounter === 100){
+                        centiCounter = 0; 
+                    }
+                    centiSecond.innerHTML = `&nbsp;${++centiCounter}`;
+                }, 10);
                 isplay = true;
+                isReset = true;
             }
             else{
                 playButton.innerHTML = 'Play';
+                clearInterval(min);
+                clearInterval(sec); 
+                clearInterval(centiSec);    
                 isplay = false;
+                isReset = false;
             }
             toggleButton();
         }
 
-        // Play StopWatch count Seconds
-        const playSec = () => {
-            setInterval(() => {
-                second.innerHTML = sec++;
-            }, 1000);
-        }
         const reset = () => {
+            isReset = true;
             play();
             lapButton.classList.add("hidden");
             resetButton.classList.add("hidden");
+            second.innerHTML = '&nbsp;0 :'
+            centiSecond.innerHTML = '&nbsp;0';
+            minute.innerHTML = '0 :';
+        }
+
+        const lap = () => {
+            const li = document.createElement("li");
+            const number = document.createElement("span");
+            const timeStamp = document.createElement("span");
+
+            li.setAttribute("class", "lap-item");
+            number.setAttribute("class", "number");
+            timeStamp.setAttribute("class", "time-stamp");
+
+            timeStamp.innerHTML = `${minCounter} : ${secCounter} : ${centiCounter}`;
         }
 
         playButton.addEventListener("click", play);
@@ -105,3 +147,5 @@
     </script>
 </body>
 </html>
+
+<!-- 24:33 youtube video current time- channel the coding lab -->

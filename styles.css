@@ -21,6 +21,18 @@ body{
     left: 42%;
 }
 
+/* StopWatch title */
+.top-left-title {
+    color: white;
+    position: fixed;
+    top: 25px;
+    left: 30px;
+    font-size: 32px;
+    /* font-weight: bold; */
+    font-family: sans-serif;
+}
+
+
 /* outer circle of StopWatch */
 .outer-circle{
     width: 230px;

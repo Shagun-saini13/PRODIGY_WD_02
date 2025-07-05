@@ -11,6 +11,8 @@
 <body>
     <div class="container">
 
+        <div class="top-left-title">Stopwatch</div>
+
         <div class="watch">
             <div class="outer-circle">
                 <div class="inner-circle">
@@ -28,10 +30,10 @@
 
         <ul class="laps">
             <!-- lap Items -->
-            <li class="lap-item">
-                <span class="number">1</span>
-                <span class="time-stamp">6:9</span>
-            </li>
+            <!-- <li class="lap-item">
+                <span class="number"></span>
+                <span class="time-stamp"></span>
+            </li> -->
             <!-- clear All Button -->
             <button class="lap-clear-button hidden">Clear All</button>
         </ul>
@@ -100,14 +102,30 @@
         }
 
         const reset = () => {
-            isReset = true;
-            play();
-            lapButton.classList.add("hidden");
-            resetButton.classList.add("hidden");
-            second.innerHTML = '&nbsp;0 :'
+            // Stop all intervals
+            clearInterval(min);
+            clearInterval(sec); 
+            clearInterval(centiSec);    
+
+            // Reset counters
+            secCounter = 0;
+            centiCounter = 0;
+            minCounter = 0;
+
+            // Update display
+            second.innerHTML = '&nbsp;0 :';
             centiSecond.innerHTML = '&nbsp;0';
             minute.innerHTML = '0 :';
+
+            // Reset state and UI
+            isplay = false;
+            isReset = false;
+            playButton.innerHTML = 'Play';
+            lapButton.classList.add("hidden");
+            resetButton.classList.add("hidden");
+            bg.classList.remove("animation-bg");
         }
+
 
         const lap = () => {
             const li = document.createElement("li");

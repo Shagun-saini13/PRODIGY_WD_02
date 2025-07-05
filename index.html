@@ -5,25 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StopWatch</title>
 
-    <!-- External CSS -->
+    <!-- Link to external CSS -->
      <link rel="stylesheet" href="styles.css" />
-    <!-- JavaScript -->
-     <!-- <script src="script.js"></script> -->
 
 </head>
 <body>
     <div class="container">
 
+        <!-- StopWatch title -->
         <div class="top-left-title">Stopwatch</div>
 
+        <!-- Stopwatch Circle Display -->
         <div class="watch">
             <div class="outer-circle">
                 <div class="inner-circle">
+                    <!-- Time values displayed -->
                     <span class="text minute">0 :</span>
                     <span class="text sec">&nbsp;0 :</span>
                     <span class="text msec">&nbsp;0</span>
                 </div>
             </div>
+            <!-- Play, reset, lap button -->
             <div class="button-wrapper">
                 <button class="button reset hidden">Reset</button>
                 <button class="button play">Play</button>
@@ -31,16 +33,15 @@
             </div>
         </div>
 
+        <!-- Lap List and Clear Button -->
         <ul class="laps">
-            <!-- lap Items -->
-            <!-- <li class="lap-item">
-                <span class="number"></span>
-                <span class="time-stamp"></span>
-            </li> -->
             <!-- clear All Button -->
             <button class="lap-clear-button hidden">Clear All</button>
         </ul>
     </div>
+
+
+    <!-- JavaScript -->
     <script>
         const playButton = document.getElementsByClassName("play")[0];
         const lapButton = document.getElementsByClassName("lap")[0];
@@ -62,27 +63,30 @@
         let lapItem  = 0;
         let isReset = false;
 
+        
+        // Show Lap and Reset buttons
         const toggleButton = () => {
             lapButton.classList.remove("hidden");
             resetButton.classList.remove("hidden");
         }
 
+        // Play or pause stopwatch
         const play = () => {
             if(!isplay && !isReset){
                 playButton.innerHTML = 'Pause';
                 bg.classList.add("animation-bg");
-                // Counter of minute
+                // Minute Counter
                 min = setInterval(() => {
                     minute.innerHTML = `${++minCounter} :`;
                 }, 60*1000);
-                // Counter of Seconds
+                // Seconds Counter
                 sec = setInterval(() => {6
                     if(secCounter === 60){
                         secCounter = 0;
                     }
                     second.innerHTML = `&nbsp;${++secCounter} :`;
                 }, 1000);
-                // Counter of msec
+                // CentiSecond Counter
                 centiSec = setInterval(() => {
                     if(centiCounter === 100){
                         centiCounter = 0; 
@@ -139,7 +143,7 @@
             number.setAttribute("class", "number");
             timeStamp.setAttribute("class", "time-stamp");
 
-            number.innnerText = `#${++lapItem}`;
+            number.innerText = `#${++lapItem}`;
             timeStamp.innerHTML = `${minCounter} : ${secCounter} : ${centiCounter}`;
 
             li.append(number, timeStamp);
@@ -148,6 +152,7 @@
             clearButton.classList.remove("hidden");
         }
 
+        // Clear all laps
         const clearAll = () =>{
             laps.innerHTML = '';
             laps.append(clearButton);
@@ -162,5 +167,3 @@
     </script>
 </body>
 </html>
-
-<!-- 34:11 youtube video current time- channel the coding lab -->

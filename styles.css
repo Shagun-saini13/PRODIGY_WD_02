@@ -44,6 +44,7 @@ body{
     align-items: center;
 }
 
+/* Animated gradient for background */
 .animation-bg{
     background: linear-gradient(-45deg, #ee7752, orange, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
@@ -73,7 +74,7 @@ body{
     align-items: center;
 }
 
-/* StopWatch Count */
+/* StopWatch time text */
 .text{
     color: white;
     font-size: 23px;;

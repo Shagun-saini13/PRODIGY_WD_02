@@ -90,7 +90,7 @@ body{
     font-size: 23px;;
 }
 
-/* Reset Play Lap button spacing */
+/* Reset, Play, Lap button spacing */
 .button-wrapper{
     width: 250px;
     margin-top: 30px;
@@ -98,7 +98,7 @@ body{
     justify-content: space-between;
 }
 
-/* Reset Play Lap button size and color */
+/* Reset, Play, Lap button styling */
 .button{
     width: 50px;
     height: 50px;
@@ -109,7 +109,7 @@ body{
     cursor: pointer;
 }
 
-/* Reset Play Lap hover effect on button click*/
+/* Reset, Play, Lap hover effect on button click*/
 .button:hover{
     background-color: white;
     color: black; 
@@ -126,6 +126,7 @@ body{
     margin-top: 30px;
 }
 
+/* Hide scrollbar */
 .laps::-webkit-scrollbar{
     display: none;
 }
@@ -146,7 +147,7 @@ body{
     color:#cccccc;
 }
 
-/* lap actual time-stamp */
+/* lap time-stamp */
 .time-stamp{
     display: inline-block;
     margin-left: 25px;

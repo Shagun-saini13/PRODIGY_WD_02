@@ -27,6 +27,12 @@
         </div>
 
         <ul class="laps">
+            <!-- lap Items -->
+            <li class="lap-item">
+                <span class="number">1</span>
+                <span class="time-stamp">6:9</span>
+            </li>
+            <!-- clear All Button -->
             <button class="lap-clear-button hidden">Clear All</button>
         </ul>
     </div>
@@ -39,6 +45,7 @@
         const minute = document.getElementsByClassName("minute")[0];
         const centiSecond = document.getElementsByClassName("msec")[0];
         const laps = document.getElementsByClassName("laps")[0];
+        const bg = document.getElementsByClassName("outer-circle")[0];
 
         let isplay = false;
         let secCounter=0;
@@ -58,6 +65,7 @@
         const play = () => {
             if(!isplay && !isReset){
                 playButton.innerHTML = 'Pause';
+                bg.classList.add("animation-bg");
                 // Counter of minute
                 min = setInterval(() => {
                     minute.innerHTML = `${++minCounter} :`;
@@ -86,6 +94,7 @@
                 clearInterval(centiSec);    
                 isplay = false;
                 isReset = false;
+                bg.classList.remove("animation-bg");
             }
             toggleButton();
         }
@@ -114,11 +123,15 @@
 
             li.append(number, timeStamp);
             laps.append(li);
+
+            clearButton.classList.remove("hidden");
         }
 
         const clearAll = () =>{
             laps.innerHTML = '';
             laps.append(clearButton);
+            clearButton.classList.add("hidden");
+            lapItem = 0;
         }
         playButton.addEventListener("click", play);
         resetButton.addEventListener("click", reset);
